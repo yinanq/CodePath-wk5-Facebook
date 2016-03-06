@@ -57,34 +57,21 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
         })
     }
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        let scrollY = scrollView.contentOffset.y
-        print(scrollY)
+//        let scrollY = scrollView.contentOffset.y
+//        print(scrollY)
         let scrollLimit = CGFloat(50)
         let minimumAlpha = CGFloat(0.3)
-        if scrollY < -scrollLimit || scrollY > scrollLimit {
+        if scrollView.contentOffset.y < -scrollLimit || scrollView.contentOffset.y > scrollLimit {
             view.backgroundColor = UIColor(white: 0, alpha: minimumAlpha)
         } else {
-            backgroundAlpha = minimumAlpha + (scrollLimit - abs(scrollY) ) / scrollLimit
+            backgroundAlpha = minimumAlpha + (scrollLimit - abs(scrollView.contentOffset.y) ) / scrollLimit
             view.backgroundColor = UIColor(white: 0, alpha: backgroundAlpha)
         }
     }
-//    func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
+    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
 //        let scrollY = scrollView.contentOffset.y
 //        print(scrollY)
-//        if scrollY < -50 || scrollY > 50 {
-//            dismissViewControllerAnimated(true, completion: nil)
-//        } else {
-//            scrollView.contentOffset.y = 0
-//            UIView.animateWithDuration(0.05, animations: { () -> Void in
-//                self.doneButtonImage.alpha = 1
-//                self.toolBarImage.alpha = 1
-//            })
-//        }
-//    }
-    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        let scrollY = scrollView.contentOffset.y
-        print(scrollY)
-        if scrollY > -50 && scrollY < 50 && decelerate == false {
+        if scrollView.contentOffset.y > -50 && scrollView.contentOffset.y < 50 && decelerate == false {
             UIView.animateWithDuration(0.05, animations: { () -> Void in
                 scrollView.contentOffset.y = 0
                 self.doneButtonImage.alpha = 1

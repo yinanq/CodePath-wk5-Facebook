@@ -189,7 +189,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="1438"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6Vc-xY-a2r">
+                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6Vc-xY-a2r">
                                         <rect key="frame" x="12" y="456" width="298" height="248"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal">
@@ -199,14 +199,6 @@
                                             <segue destination="4dZ-Wz-S84" kind="push" id="wkZ-i9-nuQ"/>
                                         </connections>
                                     </button>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleAspectFill" image="wedding2" id="e7R-Rb-9m9">
-                                        <rect key="frame" x="4" y="240" width="154" height="156"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <gestureRecognizers/>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="akw-BY-IFg" appends="YES" id="qKt-Yc-7NR"/>
-                                        </connections>
-                                    </imageView>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="2" contentMode="scaleAspectFill" image="wedding3" id="a6x-W8-fsK">
                                         <rect key="frame" x="162" y="81" width="154" height="103"/>
                                         <autoresizingMask key="autoresizingMask"/>
@@ -232,11 +224,19 @@
                                         </connections>
                                     </imageView>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" image="wedding1" id="FCX-rU-UPX">
-                                        <rect key="frame" x="4" y="81" width="154" height="156"/>
+                                        <rect key="frame" x="4" y="81" width="155" height="156"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <gestureRecognizers/>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="K1N-c5-low" appends="YES" id="BdN-Yz-r15"/>
+                                        </connections>
+                                    </imageView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleAspectFill" image="wedding2" id="e7R-Rb-9m9">
+                                        <rect key="frame" x="4" y="240" width="155" height="156"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="akw-BY-IFg" appends="YES" id="qKt-Yc-7NR"/>
                                         </connections>
                                     </imageView>
                                 </subviews>
