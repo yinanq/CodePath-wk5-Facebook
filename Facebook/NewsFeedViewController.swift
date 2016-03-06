@@ -10,22 +10,17 @@ import UIKit
 
 class NewsFeedViewController: UIViewController {
     
-    // 5 wedding photos and their array
-    @IBOutlet weak var photoImageView1: UIImageView!
-    @IBOutlet weak var photoImageView2: UIImageView!
-    @IBOutlet weak var photoImageView3: UIImageView!
-    @IBOutlet weak var photoImageView4: UIImageView!
-    @IBOutlet weak var photoImageView5: UIImageView!
-    var photoImageViews: [UIImageView]!
-    var tappedPhotoIndex: Int!
-    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var feedImageView: UIImageView!
     
+    var tappedPhotoImageView: UIImageView!
+    var lightboxTransition = LightboxTransition()
+    // this line above equals the combination of these two lines below, declaring an object of a class and then instantiating an instance of the object:
+    // var lightboxTransition: LightboxTransition!
+    // lightboxTransition = LightboxTransition()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        photoImageViews = [photoImageView1,photoImageView2,photoImageView3,photoImageView4,photoImageView5]
         
         // Configure the content size of the scroll view
         scrollView.contentSize = CGSizeMake(320, feedImageView.image!.size.height)
@@ -44,24 +39,25 @@ class NewsFeedViewController: UIViewController {
         scrollView.scrollIndicatorInsets.top = 0
         scrollView.scrollIndicatorInsets.bottom = 50
     }
-    
-//    @IBAction func didTapPhoto(sender: UITapGestureRecognizer) {
-//        performSegueWithIdentifier("photoSegue", sender: self)
-//    }
-    // use UIButton instead of UITapGestureRecognizer in order to access sender.tag
-    @IBAction func didTapButtonOnPhoto(sender: UIButton) {
-        tappedPhotoIndex = sender.tag
+
+    @IBAction func didTapPhoto(sender: UITapGestureRecognizer) {
+        tappedPhotoImageView = sender.view as! UIImageView
         performSegueWithIdentifier("photoSegue", sender: self)
     }
     
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-    // Get the new view controller using segue.destinationViewController.
+        // Get the new view controller using segue.destinationViewController.
         let destinationViewController = segue.destinationViewController as! PhotoViewController
         
-    // Pass the selected object to the new view controller.
-        destinationViewController.photoImage = self.photoImageViews[tappedPhotoIndex].image
+        // Pass the selected object to the new view controller.
+        destinationViewController.photoImage = self.tappedPhotoImageView.image
+        
+        // custom transition 
+        // http://courses.codepath.com/courses/ios_for_designers/pages/custom_view_controller_transitions
+        destinationViewController.modalPresentationStyle = UIModalPresentationStyle.Custom
+        destinationViewController.transitioningDelegate = lightboxTransition
     }
     
 }
