@@ -35,6 +35,34 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+    // MARK: - my methods
+    func setButtonsAlpha(alpha: CGFloat) {
+        UIView.animateWithDuration(0.1, animations: {
+            self.doneButtonImage.alpha = alpha
+            self.toolBarImage.alpha = alpha
+        })
+    }
+    
+    // MARK: - Zooming
+    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+        return photoImageView
+    }
+    var zoomed = false
+    func scrollViewWillBeginZooming(scrollView: UIScrollView, withView view: UIView?) {
+        zoomed = true
+//        print("zoomed", zoomed)
+        setButtonsAlpha(0)
+    }
+    func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView?, atScale scale: CGFloat) {
+        if scale == 1 {
+            zoomed = false
+            setButtonsAlpha(1)
+        } else {
+            zoomed = true
+        }
+//        print("zoomed",zoomed,"to scale",scale)
+    }
     
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -51,34 +79,35 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var doneButtonImage: UIImageView!
     @IBOutlet weak var toolBarImage: UIImageView!
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
-        UIView.animateWithDuration(0.1, animations: {
-            self.doneButtonImage.alpha = 0
-            self.toolBarImage.alpha = 0
-        })
+        setButtonsAlpha(0)
     }
     func scrollViewDidScroll(scrollView: UIScrollView) {
 //        let scrollY = scrollView.contentOffset.y
 //        print(scrollY)
-        let scrollLimit = CGFloat(50)
-        let minimumAlpha = CGFloat(0.3)
-        if scrollView.contentOffset.y < -scrollLimit || scrollView.contentOffset.y > scrollLimit {
-            view.backgroundColor = UIColor(white: 0, alpha: minimumAlpha)
-        } else {
-            backgroundAlpha = minimumAlpha + (scrollLimit - abs(scrollView.contentOffset.y) ) / scrollLimit
-            view.backgroundColor = UIColor(white: 0, alpha: backgroundAlpha)
+        if zoomed == false {
+            let scrollLimit = CGFloat(50)
+            let minimumAlpha = CGFloat(0.3)
+            if scrollView.contentOffset.y < -scrollLimit || scrollView.contentOffset.y > scrollLimit {
+                view.backgroundColor = UIColor(white: 0, alpha: minimumAlpha)
+            } else {
+                backgroundAlpha = minimumAlpha + (scrollLimit - abs(scrollView.contentOffset.y) ) / scrollLimit
+                view.backgroundColor = UIColor(white: 0, alpha: backgroundAlpha)
+            }
         }
     }
     func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
 //        let scrollY = scrollView.contentOffset.y
 //        print(scrollY)
-        if scrollView.contentOffset.y > -50 && scrollView.contentOffset.y < 50 && decelerate == false {
-            UIView.animateWithDuration(0.05, animations: { () -> Void in
-                scrollView.contentOffset.y = 0
-                self.doneButtonImage.alpha = 1
-                self.toolBarImage.alpha = 1
-            })
-        } else {
-            dismissViewControllerAnimated(true, completion: nil)
+        if zoomed == false {
+            if scrollView.contentOffset.y > -50 && scrollView.contentOffset.y < 50 && decelerate == false {
+                UIView.animateWithDuration(0.05, animations: { () -> Void in
+                    scrollView.contentOffset.y = 0
+                    self.doneButtonImage.alpha = 1
+                    self.toolBarImage.alpha = 1
+                })
+            } else {
+                dismissViewControllerAnimated(true, completion: nil)
+            }
         }
     }
     
