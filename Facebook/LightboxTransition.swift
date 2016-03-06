@@ -78,7 +78,7 @@ class LightboxTransition: BaseTransition {
         // set up temp views
         tempBackgroundView.backgroundColor = UIColor(white: 0, alpha: 1)
         tempBackgroundView.frame = fromViewController.view.frame
-        tempImageView.frame = photoViewContorller.photoImageView.frame
+        tempImageView.frame = window!.convertRect(photoViewContorller.photoImageView.frame, fromView: photoViewContorller.scrollView)
         tempImageView.image = photoViewContorller.photoImageView.image
         tempImageView.clipsToBounds = photoViewContorller.photoImageView.clipsToBounds
         tempImageView.contentMode = photoViewContorller.photoImageView.contentMode
