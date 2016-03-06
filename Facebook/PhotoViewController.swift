@@ -68,6 +68,19 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
             view.backgroundColor = UIColor(white: 0, alpha: backgroundAlpha)
         }
     }
+//    func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
+//        let scrollY = scrollView.contentOffset.y
+//        print(scrollY)
+//        if scrollY < -50 || scrollY > 50 {
+//            dismissViewControllerAnimated(true, completion: nil)
+//        } else {
+//            scrollView.contentOffset.y = 0
+//            UIView.animateWithDuration(0.05, animations: { () -> Void in
+//                self.doneButtonImage.alpha = 1
+//                self.toolBarImage.alpha = 1
+//            })
+//        }
+//    }
     func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         let scrollY = scrollView.contentOffset.y
         print(scrollY)
