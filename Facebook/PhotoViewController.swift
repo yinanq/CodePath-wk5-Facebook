@@ -84,14 +84,14 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
     func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         let scrollY = scrollView.contentOffset.y
         print(scrollY)
-        if scrollY < -50 || scrollY > 50 {
-            dismissViewControllerAnimated(true, completion: nil)
-        } else {
-            scrollView.contentOffset.y = 0
+        if scrollY > -50 && scrollY < 50 && decelerate == false {
             UIView.animateWithDuration(0.05, animations: { () -> Void in
+                scrollView.contentOffset.y = 0
                 self.doneButtonImage.alpha = 1
                 self.toolBarImage.alpha = 1
             })
+        } else {
+            dismissViewControllerAnimated(true, completion: nil)
         }
     }
     
