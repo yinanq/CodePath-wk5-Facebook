@@ -140,13 +140,10 @@
                                 <rect key="frame" x="0.0" y="525" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="doneButton" id="HKi-yt-4gD">
-                                <rect key="frame" x="259" y="30" width="51" height="27"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="JXE-Z9-WSV">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="JXE-Z9-WSV">
                                 <rect key="frame" x="259" y="30" width="51" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="doneButton"/>
                                 <connections>
                                     <action selector="didTapDone:" destination="teG-3z-6Zv" eventType="touchUpInside" id="70P-im-qVJ"/>
                                 </connections>
@@ -155,7 +152,7 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="doneButtonImage" destination="HKi-yt-4gD" id="1Xa-5p-YGV"/>
+                        <outlet property="doneButton" destination="JXE-Z9-WSV" id="cVi-d7-VM1"/>
                         <outlet property="photoImageView" destination="iev-oZ-ZRy" id="r5J-yX-IJJ"/>
                         <outlet property="scrollView" destination="QuT-oy-s5O" id="avX-u8-pXb"/>
                         <outlet property="toolBarImage" destination="R7e-46-bb8" id="pUv-cv-Us5"/>

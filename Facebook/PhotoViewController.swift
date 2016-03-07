@@ -41,7 +41,7 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
     // MARK: - my methods
     func setButtonsAlpha(alpha: CGFloat) {
         UIView.animateWithDuration(0.1, animations: {
-            self.doneButtonImage.alpha = alpha
+            self.doneButton.alpha = alpha
             self.toolBarImage.alpha = alpha
         })
     }
@@ -67,10 +67,10 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
     }
     
     // MARK: - Navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        // Get the new view controller using segue.destinationViewController.
+//        // Pass the selected object to the new view controller.
+//    }
     
     @IBAction func didTapDone(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
@@ -78,7 +78,7 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
     
     // scroll to fade out background to peak fromViewController, scroll enough to fade out background and dismiss view, scroll not enough to bounce back
     var backgroundAlpha = CGFloat(1)
-    @IBOutlet weak var doneButtonImage: UIImageView!
+    @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var toolBarImage: UIImageView!
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
         setButtonsAlpha(0)
@@ -102,9 +102,9 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
 //        print(scrollY)
         if zoomed == false {
             if scrollView.contentOffset.y > -50 && scrollView.contentOffset.y < 50 && decelerate == false {
-                UIView.animateWithDuration(0.05, animations: { () -> Void in
+                UIView.animateWithDuration(0.1, animations: { () -> Void in
                     scrollView.contentOffset.y = 0
-                    self.doneButtonImage.alpha = 1
+                    self.doneButton.alpha = 1
                     self.toolBarImage.alpha = 1
                 })
             } else {
