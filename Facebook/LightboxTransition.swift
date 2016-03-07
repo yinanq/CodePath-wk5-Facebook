@@ -41,6 +41,9 @@ class LightboxTransition: BaseTransition {
         window?.addSubview(tempBackgroundView)
         window?.addSubview(tempImageView)
         
+        // hide photo tile
+        newsFeedViewController.tappedPhotoImageView.alpha = 0
+        
         // animation
         UIView.animateWithDuration(duration, animations: {
             tempBackgroundView.alpha = 1
@@ -96,10 +99,12 @@ class LightboxTransition: BaseTransition {
             tempImageView.frame = window!.convertRect(newsFeedViewController.tappedPhotoImageView.frame, fromView: newsFeedViewController.scrollView)
 //            tempImageView.contentMode = newsFeedViewController.tappedPhotoImageView.contentMode
             }) { (finished: Bool) -> Void in
-                
                 // remove temp views
                 tempBackgroundView.removeFromSuperview()
                 tempImageView.removeFromSuperview()
+                
+                // unhide photo tile
+                newsFeedViewController.tappedPhotoImageView.alpha = 1
                 
                 self.finish()
         }
