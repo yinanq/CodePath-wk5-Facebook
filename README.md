@@ -14,4 +14,4 @@ Stories completed:
 
 GIF walkthrough (using LiceCap):
 
-![tiiip](url)
+![tiiip](https://github.com/yinanq/CodePath-wk5-Facebook/blob/master/CodePath-wk5-Facebook.gif)
