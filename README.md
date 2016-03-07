@@ -10,7 +10,6 @@ Stories completed:
 * [x] Required: On scroll of the full screen photo, the background should start to become transparent, revealing the feed.
 * [x] Required: If the user scrolls a large amount and releases, the full screen photo should dismiss.
 * [x] Optional: The full screen photo should be zoomable.
-* [x] Self-added: Blur effect background for login modal and compose modal.
 
 GIF walkthrough (using LiceCap):
 
