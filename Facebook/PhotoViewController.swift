@@ -17,12 +17,14 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // hacky solution for the problem of contentMode cannot be animated
         photoImageView.image = photoImage
-        if photoImage.size.width >= photoImage.size.height {
-            photoImageView.contentMode = .ScaleAspectFit
+        if photoImage.size.width > photoImage.size.height {
+            photoImageView.frame.size.height = 214
         } else {
-            photoImageView.contentMode = .ScaleAspectFill
+            photoImageView.frame.size.height = 450
         }
+        photoImageView.center.y = view.center.y + 12
         
         scrollView.delegate = self
         scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height)

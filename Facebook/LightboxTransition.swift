@@ -27,7 +27,8 @@ class LightboxTransition: BaseTransition {
         let tempImageView = UIImageView()
         
         // set up temp views
-        tempBackgroundView.backgroundColor = UIColor(white: 0, alpha: 0)
+        tempBackgroundView.backgroundColor = UIColor(white: 0, alpha: 1)
+        tempBackgroundView.alpha = 0
         tempBackgroundView.frame = toViewController.view.frame
 //        tempImageView.frame = newsFeedViewController.tappedPhotoImageView.frame
         tempImageView.frame = window!.convertRect(newsFeedViewController.tappedPhotoImageView.frame, fromView: newsFeedViewController.scrollView)
@@ -48,7 +49,7 @@ class LightboxTransition: BaseTransition {
         UIView.animateWithDuration(duration, animations: {
             tempBackgroundView.alpha = 1
             tempImageView.frame = photoViewContorller.photoImageView.frame
-            tempImageView.contentMode = photoViewContorller.photoImageView.contentMode
+//            tempImageView.contentMode = photoViewContorller.photoImageView.contentMode
         }) { (finished: Bool) -> Void in
             
             // unhide toViewController
@@ -87,8 +88,8 @@ class LightboxTransition: BaseTransition {
         tempImageView.contentMode = photoViewContorller.photoImageView.contentMode
         
         // add temp views
-        //        containerView.addSubview(tempBackgroundView)
-        //        containerView.addSubview(tempImageView)
+//        containerView.addSubview(tempBackgroundView)
+//        containerView.addSubview(tempImageView)
         window?.addSubview(tempBackgroundView)
         window?.addSubview(tempImageView)
         
@@ -99,12 +100,13 @@ class LightboxTransition: BaseTransition {
             tempImageView.frame = window!.convertRect(newsFeedViewController.tappedPhotoImageView.frame, fromView: newsFeedViewController.scrollView)
 //            tempImageView.contentMode = newsFeedViewController.tappedPhotoImageView.contentMode
             }) { (finished: Bool) -> Void in
-                // remove temp views
-                tempBackgroundView.removeFromSuperview()
-                tempImageView.removeFromSuperview()
                 
                 // unhide photo tile
                 newsFeedViewController.tappedPhotoImageView.alpha = 1
+                
+                // remove temp views
+                tempBackgroundView.removeFromSuperview()
+                tempImageView.removeFromSuperview()
                 
                 self.finish()
         }

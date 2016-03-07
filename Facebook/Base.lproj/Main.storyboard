@@ -130,7 +130,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="iev-oZ-ZRy">
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="iev-oZ-ZRy">
                                         <rect key="frame" x="0.0" y="67" width="320" height="458"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -211,14 +211,6 @@
                                             <outletCollection property="gestureRecognizers" destination="Ain-0B-FFG" appends="YES" id="D7g-ii-y3S"/>
                                         </connections>
                                     </imageView>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="3" contentMode="scaleAspectFill" image="wedding4" id="hjU-Cd-qRf">
-                                        <rect key="frame" x="162" y="187" width="154" height="103"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <gestureRecognizers/>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="6B6-j6-BCT" appends="YES" id="1JN-Wo-Jvs"/>
-                                        </connections>
-                                    </imageView>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="4" contentMode="scaleAspectFill" image="wedding5" id="CsA-CE-glz">
                                         <rect key="frame" x="162" y="293" width="154" height="103"/>
                                         <autoresizingMask key="autoresizingMask"/>
@@ -241,6 +233,14 @@
                                         <gestureRecognizers/>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="akw-BY-IFg" appends="YES" id="qKt-Yc-7NR"/>
+                                        </connections>
+                                    </imageView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="3" contentMode="scaleAspectFill" image="wedding4" id="hjU-Cd-qRf">
+                                        <rect key="frame" x="162" y="187" width="154" height="103"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="6B6-j6-BCT" appends="YES" id="1JN-Wo-Jvs"/>
                                         </connections>
                                     </imageView>
                                 </subviews>

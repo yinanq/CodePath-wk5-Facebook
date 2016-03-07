@@ -52,7 +52,7 @@ class NewsFeedViewController: UIViewController {
         let destinationViewController = segue.destinationViewController as! PhotoViewController
         
         // Pass the selected object to the new view controller.
-        destinationViewController.photoImage = self.tappedPhotoImageView.image
+        destinationViewController.photoImage = tappedPhotoImageView.image
         
         // custom transition 
         // http://courses.codepath.com/courses/ios_for_designers/pages/custom_view_controller_transitions
