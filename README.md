@@ -1,5 +1,5 @@
-# CodePath iOS for Designers week4 assignment 
-http://courses.codepath.com/courses/ios_for_designers/unit/4#!assignment
+# CodePath iOS for Designers week5 assignment 
+http://courses.codepath.com/courses/ios_for_designers/unit/5#!assignment
 
 Hours spent: 15.5
 
