@@ -16,8 +16,12 @@ class LightboxTransition: BaseTransition {
         toViewController.view.alpha = 0
         
         // access fromViewController and toViewController's properties
-        let newsFeedViewController = fromViewController as! NewsFeedViewController
+//        let newsFeedViewController = fromViewController as! NewsFeedViewController
         let photoViewContorller = toViewController as! PhotoViewController
+        // solution for the tab bar view controller xcode complain (copied fr Tim's fb post)
+        let tabBarViewController = fromViewController as! UITabBarController
+        let navigationController = tabBarViewController.selectedViewController as! UINavigationController
+        let newsFeedViewController = navigationController.topViewController as! NewsFeedViewController
         
         // create window
         let window = UIApplication.sharedApplication().keyWindow
@@ -69,8 +73,12 @@ class LightboxTransition: BaseTransition {
         fromViewController.view.alpha = 0
         
         // access fromViewController and toViewController's properties
-        let newsFeedViewController = toViewController as! NewsFeedViewController
+//        let newsFeedViewController = toViewController as! NewsFeedViewController
         let photoViewContorller = fromViewController as! PhotoViewController
+        // solution for the tab bar view controller xcode complain (copied fr Tim's fb post)
+        let tabBarViewController = toViewController as! UITabBarController
+        let navigationController = tabBarViewController.selectedViewController as! UINavigationController
+        let newsFeedViewController = navigationController.topViewController as! NewsFeedViewController
         
         // create window
         let window = UIApplication.sharedApplication().keyWindow
