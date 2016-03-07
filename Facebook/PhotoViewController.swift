@@ -14,21 +14,25 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
     
+    let contentInset = CGFloat(100)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // hacky solution for the problem of contentMode cannot be animated
         photoImageView.image = photoImage
+        
+//        photoImageView.contentMode = .ScaleAspectFit
+        
+        // MARK: - 2askTim
+        // hacky solution that solves the problem of contentMode cannot be animated but breaks zooming
         if photoImage.size.width > photoImage.size.height {
-            photoImageView.frame.size.height = 214
+            photoImageView.bounds.size.height = 214
         } else {
-            photoImageView.frame.size.height = 450
+            photoImageView.bounds.size.height = 460
         }
-        photoImageView.center.y = view.center.y + 12
         
         scrollView.delegate = self
         scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height)
-        let contentInset = CGFloat(100)
         scrollView.contentInset.top = contentInset
         scrollView.contentInset.bottom = contentInset
     }
@@ -54,16 +58,24 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
     func scrollViewWillBeginZooming(scrollView: UIScrollView, withView view: UIView?) {
         zoomed = true
 //        print("zoomed", zoomed)
+        UIView.animateWithDuration(0.3, animations: {
+            self.view.backgroundColor = UIColor(white: 0, alpha: 1)
+        })
+        self.view.backgroundColor = UIColor(white: 0, alpha: 1)
         setButtonsAlpha(0)
     }
     func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView?, atScale scale: CGFloat) {
         if scale == 1 {
             zoomed = false
-            setButtonsAlpha(1)
+            UIView.animateWithDuration(0.1, animations: {
+                self.scrollView.contentOffset.y = 0
+                self.doneButton.alpha = 1
+                self.toolBarImage.alpha = 1
+            })
         } else {
             zoomed = true
         }
-//        print("zoomed",zoomed,"to scale",scale)
+        print("zoomed",zoomed,"to scale",scale)
     }
     
     // MARK: - Navigation
@@ -84,8 +96,11 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
         setButtonsAlpha(0)
     }
     func scrollViewDidScroll(scrollView: UIScrollView) {
-//        let scrollY = scrollView.contentOffset.y
-//        print(scrollY)
+        print("scroll view did scroll to Y:", scrollView.contentOffset.y)
+//        scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height)
+        scrollView.contentSize.height = view.frame.height
+        scrollView.contentInset.top = contentInset
+        scrollView.contentInset.bottom = contentInset
         if zoomed == false {
             let scrollLimit = CGFloat(50)
             let minimumAlpha = CGFloat(0.3)
@@ -98,8 +113,7 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-//        let scrollY = scrollView.contentOffset.y
-//        print(scrollY)
+        print("scroll view did end dragging on Y:", scrollView.contentOffset.y)
         if zoomed == false {
             if scrollView.contentOffset.y > -50 && scrollView.contentOffset.y < 50 && decelerate == false {
                 UIView.animateWithDuration(0.1, animations: { () -> Void in
